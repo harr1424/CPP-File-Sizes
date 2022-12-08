@@ -1,5 +1,5 @@
 #include <iostream>
-#include <set>
+#include <vector>
 #include <filesystem>
 
 int main(int argc, char** argv) {
@@ -10,13 +10,13 @@ int main(int argc, char** argv) {
     else 
     {
         const std::string full_path = argv[1];
-        //std::cout << full_path << std::endl;
 
-        std::set<std::string> entries;
+        std::vector<std::pair<std::string, int> > entries;
 
         for (const auto& entry : std::filesystem::recursive_directory_iterator(full_path)) {
-            //std::cout << entry << std::endl;
-            entries.insert(entry.path());
+            std::cout << entry.path() << "\t" << entry.file_size() << std::endl;
+            std::pair<std::string, int> new_entry = std::make_pair(entry.path(), entry.file_size());
+            entries.push_back(entry);
         }
     }
 }
