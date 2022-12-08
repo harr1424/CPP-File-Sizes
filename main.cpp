@@ -18,5 +18,6 @@ int main(int argc, char** argv) {
             std::pair<std::string, int> new_entry = std::make_pair(entry.path(), entry.file_size());
             entries.push_back(new_entry);
         }
+
     }
 }
