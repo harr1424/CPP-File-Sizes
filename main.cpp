@@ -80,4 +80,4 @@ int main(int argc, char **argv)
     return EXIT_SUCCESS;
 }
 
-// program completes in about 11 seconds (regardless if the array is sorted or not)
+// program completes in 0.002 seconds
