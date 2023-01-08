@@ -47,7 +47,7 @@ void analyze_fs(FS_info entries[], std::string full_path)
 
     for (const auto &entry : std::__fs::filesystem::recursive_directory_iterator(full_path))
     {
-        if (entry.is_regular_file())
+        if (entry.is_regular_file()) 
         {
             if (num_entries < 10)
             {
@@ -63,10 +63,6 @@ void analyze_fs(FS_info entries[], std::string full_path)
                     entries[index].size = entry.file_size();
                 }
             }
-        }
-        else if (entry.is_directory())
-        {
-            analyze_fs(entries, entry.path());
         }
     }
 }
