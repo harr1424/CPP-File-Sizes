@@ -4,15 +4,19 @@
 #include <time.h>
 #include <unistd.h>
 
+
+// Struct to contain a string representing a filename and unsigned long long to 
+// represent its size. 
 struct FS_info
 {
     std::string name;
     unsigned long long size;
 };
 
+// Number of entries to output 
 const size_t NUM_ENTRIES = 10;
 
-// function to pass to std::sort in order to sort a vector of pairs by second item in descending order
+// function to pass to sort array of FS_info structs descending
 bool sort_by_desc(FS_info const& lhs, FS_info const& rhs)
 {
     return lhs.size > rhs.size;
@@ -34,9 +38,8 @@ int index_of_smallest_entry(FS_info entries[]) {
 }
 
 /*
-Recursively visit all filesystem entries at the provided path, and if the entry is a regular file,
-add its file name and file size to a vector of pairs. If the entry is a directory, this
-function will be called recursively.
+Recursively visit all filesystem entries at the provided path, and updates the 
+FS_Info array as appropriate.
 */
 void analyze_fs(FS_info entries[], std::string full_path)
 {
@@ -54,8 +57,11 @@ void analyze_fs(FS_info entries[], std::string full_path)
             else 
             {
                 int index = index_of_smallest_entry(entries);
-                entries[index].name = entry.path();
-                entries[index].size = entry.file_size();
+
+                if (entries[index].size < entry.file_size()) {
+                    entries[index].name = entry.path();
+                    entries[index].size = entry.file_size();
+                }
             }
         }
         else if (entry.is_directory())
