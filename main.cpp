@@ -112,5 +112,4 @@ int main(int argc, char **argv)
     return EXIT_SUCCESS;
 }
 
-// program completes in about 10 seconds (regardless if the array is sorted or not)
-// A one second improvement over the unlimited size vector approach 
+// program completes in 0.002 seconds
