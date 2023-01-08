@@ -24,10 +24,6 @@ void analyze_fs(std::vector<std::pair<std::string, int> > &entry_vec, std::strin
             std::pair<std::string, int> new_entry = std::make_pair(entry.path(), entry.file_size());
             entry_vec.push_back(new_entry);
         }
-        else if (entry.is_directory())
-        {
-            analyze_fs(entry_vec, entry.path());
-        }
     }
 }
 
